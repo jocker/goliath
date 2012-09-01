@@ -40,6 +40,9 @@ module Goliath
     #
     # @return [String] The app file
     def self.app_file
+      if Kernel.const_defined?(:Debugger)
+        return Debugger::SCRIPT_PATH
+      end
       c = caller_files.first
       c = $0 if !c || c.empty?
       c
